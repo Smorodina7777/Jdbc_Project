@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.dao.UserDao;
+import org.example.dao.UserDaoHiber;
+
 /**
  * Наша первое CRUD приложение с работой Базы данных
  * CRUD
@@ -13,21 +16,18 @@ public class App
 {
     public static void main( String[] args )
     {
-        UserDao userDao = new UserDao();
-        userDao.createUsersTable();
-        userDao.saveUser("Maxim", "Galkin", 23);
-        userDao.saveUser("Anton", "Antonow", 43);
-        userDao.saveUser("Ksenia", "Borodina", 34);
-        System.out.println(userDao.getAllUsers());
-        userDao.deleteUser(2);
-        System.out.println(userDao.getAllUsers());
-        UserDto userDto = userDao.getUserById(3);
-        System.out.println("Попытка найти пользователя " + 3);
-        System.out.println(userDto);
-        userDao.cleanUserTable();
-        System.out.println(userDao.getAllUsers());
-        userDao.cleanUserTable();
-        userDao.dropUserTable();
+        UserDao userDaoJdbc = new UserDaoHiber();
+        userDaoJdbc.createUserTable();
+        userDaoJdbc.saveUser("Maxim", "Galkin", 23);
+        userDaoJdbc.saveUser("Anton", "Antonow", 43);
+        userDaoJdbc.saveUser("Ksenia", "Borodina", 34);
+        System.out.println(userDaoJdbc.getAllUsers());
+        userDaoJdbc.removeUserById(2);
+        System.out.println(userDaoJdbc.getAllUsers());
+        userDaoJdbc.cleanUserTable();
+        System.out.println(userDaoJdbc.getAllUsers());
+        userDaoJdbc.cleanUserTable();
+        userDaoJdbc.dropUserTable();
 
     }
 }
