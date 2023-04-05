@@ -1,7 +1,11 @@
 package org.example;
 
 
+import org.example.antity.Cat;
+import org.example.antity.Email;
+import org.example.antity.Fish;
 import org.example.antity.User;
+import org.example.dto.Animals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +16,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -19,6 +24,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan
 @PropertySource("classpath:db.properties")
+@EnableTransactionManagement
 public class SpringConfig {
     @Autowired
     Environment env;
@@ -43,7 +49,7 @@ public class SpringConfig {
 
         factoryBean.setHibernateProperties(props);
 
-        factoryBean.setAnnotatedClasses(User.class);
+        factoryBean.setAnnotatedClasses(User.class, Email.class, Fish.class, Cat.class, Animals.class);
         return factoryBean;
     }
     @Bean

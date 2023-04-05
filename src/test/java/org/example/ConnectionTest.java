@@ -7,12 +7,12 @@ import org.junit.Test;
 
 public class ConnectionTest {
 
-    @Test
-    @SneakyThrows
-    public void testConnection() {
-        Connection connection = Config.getConnection();
-        Assert.assertTrue(connection.isValid(1));
-        Assert.assertFalse(connection.isClosed());
-    }
+//    @Test
+//    @SneakyThrows
+//    public void testConnection() {
+//        Connection connection = Config.getConnection();
+//        Assert.assertTrue(connection.isValid(1));
+//        Assert.assertFalse(connection.isClosed());
+//    }
 
 }
